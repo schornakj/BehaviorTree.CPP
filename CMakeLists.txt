@@ -244,8 +244,7 @@ if(ament_cmake_FOUND)
     set( BEHAVIOR_TREE_INC_DESTINATION   include )
     set( BEHAVIOR_TREE_BIN_DESTINATION   bin )
 
-    ament_export_include_directories(include)
-    ament_export_libraries(${BEHAVIOR_TREE_LIBRARY})
+    ament_export_targets(${PROJECT_NAME}Targets HAS_LIBRARY_TARGET)
     ament_package()
 elseif(catkin_FOUND)
     set( BEHAVIOR_TREE_LIB_DESTINATION   ${CATKIN_PACKAGE_LIB_DESTINATION} )
@@ -289,21 +288,21 @@ INSTALL( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
     DESTINATION ${BEHAVIOR_TREE_INC_DESTINATION}
     FILES_MATCHING PATTERN "*.h*")
 
-install(EXPORT ${PROJECT_NAME}Targets
-    FILE "${PROJECT_NAME}Targets.cmake"
-    DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
-    NAMESPACE BT::
-    )
+# install(EXPORT ${PROJECT_NAME}Targets
+#     FILE "${PROJECT_NAME}Targets.cmake"
+#     DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
+#     NAMESPACE BT::
+#     )
 
-export(PACKAGE ${PROJECT_NAME})
+# export(PACKAGE ${PROJECT_NAME})
 
-include(CMakePackageConfigHelpers)
+# include(CMakePackageConfigHelpers)
 
-configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-  INSTALL_DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
-)
+# configure_package_config_file(
+#   "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in"
+#   "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+#   INSTALL_DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
+# )
 
 # This requires to declare to project version in the project() macro
 
@@ -313,12 +312,12 @@ configure_package_config_file(
 #  COMPATIBILITY AnyNewerVersion
 #)
 
-install(
-  FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-    #    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
-    DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
-)
+# install(
+#   FILES
+#     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+#     #    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+#     DESTINATION "${BEHAVIOR_TREE_LIB_DESTINATION}/cmake/${PROJECT_NAME}"
+# )
 
 ######################################################
 # EXAMPLES and TOOLS
